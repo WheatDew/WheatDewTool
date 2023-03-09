@@ -8,12 +8,15 @@ public class DragStorePageElement : MonoBehaviour, IPointerDownHandler,IPointerE
 {
     [HideInInspector] public DragStorePage dragStorePage;
 
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if(eventData.pointerId == -1)
         {
             dragStorePage.scrollRect.movementType = UnityEngine.UI.ScrollRect.MovementType.Clamped;
-            Instantiate(dragStorePage.floatElementPrefab,FindObjectOfType<Canvas>().transform);
+            var obj = Instantiate(dragStorePage.floatElementPrefab,FindObjectOfType<Canvas>().transform);
+            obj.dragStorePage = dragStorePage;
+
             Debug.Log("×ó¼ü´¥·¢");
         }
         Debug.Log("µã»÷´¥·¢");

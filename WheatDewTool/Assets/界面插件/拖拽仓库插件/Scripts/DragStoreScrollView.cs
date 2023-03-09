@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DragStoreScrollView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private DragStorePage DragStorePage;
+    [SerializeField] private RectTransform rectTransform;
+    
+    public bool CalculateInBorder(Vector3 mousePosition)
     {
-        
+        bool inBorder = true;
+        if( mousePosition.x > rectTransform.position.x + rectTransform.sizeDelta.x * 0.5f
+         || mousePosition.x < rectTransform.position.x - rectTransform.sizeDelta.x * 0.5f
+         || mousePosition.y < rectTransform.position.y - rectTransform.sizeDelta.y * 0.5f
+         || mousePosition.y > rectTransform.position.y + rectTransform.sizeDelta.y * 0.5f
+         )
+            inBorder = false;
+        return inBorder;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        DragStorePage.inBorder = CalculateInBorder(Input.mousePosition);
     }
 }

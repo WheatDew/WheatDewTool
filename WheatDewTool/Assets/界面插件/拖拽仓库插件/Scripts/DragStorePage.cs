@@ -13,6 +13,8 @@ public class DragStorePage : MonoBehaviour
     public ScrollRect scrollRect;
     public FloatElementType floatElementType;
 
+    public bool inBorder=false;
+
     private void Start()
     {
         //≤‚ ‘
@@ -21,6 +23,7 @@ public class DragStorePage : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(inBorder);
         if (Input.GetMouseButtonUp(0))
         {
             scrollRect.movementType = ScrollRect.MovementType.Elastic;
